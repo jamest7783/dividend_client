@@ -19,7 +19,7 @@ const Charts=({investor})=>{
     }
     const handleSubmit=async (e)=>{
         e.preventDefault()
-        const res=await axios.post('http://localhost:3002/api/order/create',order)
+        const res=await axios.post('postgres://fdlmpfldgeyzpz:8e90955b5cf02eec3db814d17aa464c361233288afc2a6525b5fc13bdaaeadd6@ec2-44-209-158-64.compute-1.amazonaws.com:5432/d84j352mngfu50/api/order/create',order)
     }
     const [mainChartData,setMainChartData]=useState({labels:[],datasets:[{label:'',data:[0]}]})
     const [scrollChartData,setScrollChartData]=useState([])
@@ -27,7 +27,7 @@ const Charts=({investor})=>{
         let tkr=mainSymbol
         const getMainChartData=async ()=>{
             let data={labels:[],datasets:[{label:'',data:[]}]}
-            const res=await axios.post('http://localhost:3002/api/equity/historical',{ticker:mainSymbol,period:'d'})
+            const res=await axios.post('postgres://fdlmpfldgeyzpz:8e90955b5cf02eec3db814d17aa464c361233288afc2a6525b5fc13bdaaeadd6@ec2-44-209-158-64.compute-1.amazonaws.com:5432/d84j352mngfu50/api/equity/historical',{ticker:mainSymbol,period:'d'})
             data.datasets[0].label=tkr 
             res.data.reverse().map((period)=>{
                 data.labels.push(period.date.substring(0,10))
@@ -46,7 +46,7 @@ const Charts=({investor})=>{
             let scrollData=[{labels:[],datasets:[{label:'',data:[]}]},{labels:[],datasets:[{label:'',data:[]}]},{labels:[],datasets:[{label:'',data:[]}]},{labels:[],datasets:[{label:'',data:[]}]},{labels:[],datasets:[{label:'',data:[]}]}]
             let tickers=['AAPL','F','AMC','GE','OCGN']
             const res=await axios.post(
-            'http://localhost:3002/api/equity/historical/batch',{
+            'postgres://fdlmpfldgeyzpz:8e90955b5cf02eec3db814d17aa464c361233288afc2a6525b5fc13bdaaeadd6@ec2-44-209-158-64.compute-1.amazonaws.com:5432/d84j352mngfu50/api/equity/historical/batch',{
                 tickers,
                 period:'m'
             })
