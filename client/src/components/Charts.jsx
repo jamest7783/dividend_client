@@ -11,7 +11,7 @@ const Charts=({investor})=>{
     const handleChange=(e)=>{setOrder({...order,[e.target.name]:e.target.value})}
     const handleSymbol=(e)=>{
         e.preventDefault()
-        setTemp(e.target.value)
+        setTemp(e.target.value )
     }
     const handleSubmitSymbol=(e)=>{
         e.preventDefault()
@@ -19,7 +19,7 @@ const Charts=({investor})=>{
     }
     const handleSubmit=async (e)=>{
         e.preventDefault()
-        const res=await axios.post('https://dividend-postgresql.herokuapp.com/api/order/create',order)
+        const res=await axios.post(`${process.env.REACT_APP_POSTGRESQL_DB}/api/order/create`,order)
     }
     const [mainChartData,setMainChartData]=useState({labels:[],datasets:[{label:'',data:[0]}]})
     const [scrollChartData,setScrollChartData]=useState([])
@@ -27,7 +27,7 @@ const Charts=({investor})=>{
         let tkr=mainSymbol
         const getMainChartData=async ()=>{
             let data={labels:[],datasets:[{label:'',data:[]}]}
-            const res=await axios.post('https://dividend-postgresql.herokuapp.com/api/equity/historical',{ticker:mainSymbol,period:'d'})
+            const res=await axios.post(`${process.env.REACT_APP_POSTGRESQL_DB}/api/equity/historical`,{ticker:mainSymbol,period:'d'})
             data.datasets[0].label=tkr 
             res.data.reverse().map((period)=>{
                 data.labels.push(period.date.substring(0,10))
@@ -46,7 +46,7 @@ const Charts=({investor})=>{
             let scrollData=[{labels:[],datasets:[{label:'',data:[]}]},{labels:[],datasets:[{label:'',data:[]}]},{labels:[],datasets:[{label:'',data:[]}]},{labels:[],datasets:[{label:'',data:[]}]},{labels:[],datasets:[{label:'',data:[]}]}]
             let tickers=['AAPL','F','AMC','GE','OCGN']
             const res=await axios.post(
-            'https://dividend-postgresql.herokuapp.com/api/equity/historical/batch',{
+            `${process.env.REACT_APP_POSTGRESQL_DB}/api/equity/historical/batch`,{
                 tickers,
                 period:'m'
             })
