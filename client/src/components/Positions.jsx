@@ -9,7 +9,7 @@ const Positions=({investor})=>{
     useEffect(()=>{
         const getPositions=async ()=>{
             console.log(investor.portfolios[0])
-            const res=await axios.get(`http://localhost:3002/api/portfolio/read/${investor.portfolios[0]}/positions`)
+            const res=await axios.get(`${process.env.REACT_APP_POSTGRESQL_DB}/api/portfolio/read/${investor.portfolios[0]}/positions`)
             setPositions(res.data)
         }
         getPositions()

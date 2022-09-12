@@ -6,11 +6,11 @@ const Watchlist=({investor})=>{
     const [watchlistItems,setWatchlistItems]=useState([])
     useEffect(()=>{
         const fillWatchlist=async ()=>{
-            const res=await axios.get(`http://localhost:3001/api/watchlist/read/${investor.watchlists[0]}`)
+            const res=await axios.get(`${process.env.REACT_APP_MONGO_DB}/api/watchlist/read/${investor.watchlists[0]}`)
             let tempArray=Array()
             for(let symbol in res.data.symbols){
                 const watchlistData=await axios.post(
-                    'http://localhost:3002/api/equity/historical',{ticker:res.data.symbols[symbol],period:'d'})
+                    `${process.env.REACT_APP_POSTGRESQL_DB}/api/equity/historical`,{ticker:res.data.symbols[symbol],period:'d'})
                 let sym=watchlistData.data[0].symbol
                 let close=watchlistData.data[0].close
                 tempArray.push({[`${sym}`]:close.toFixed(2)})

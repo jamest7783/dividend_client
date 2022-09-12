@@ -9,7 +9,7 @@ const EquityChart=({investor})=>{
         const grabPortfolio=async ()=>{
             let capital=0
             for(let i=0;i<investor.portfolios.length;i++){
-                const res=await axios.get(`http://localhost:3002/api/portfolio/read/${investor.portfolios[i]}`)
+                const res=await axios.get(`${process.env.REACT_APP_POSTGRESQL_DB}/api/portfolio/read/${investor.portfolios[i]}`)
                 capital+=res.data.capital
             }
             setEquity(capital.toFixed(2))

@@ -7,7 +7,7 @@ const News=()=>{
     const [news,setNews]=useState([])
     const handleChange=(e)=>{setQuery({query:e.target.value})}
     const requestNews=async ( )=>{
-        const res=await axios.post('http://localhost:3001/api/watchlist/news',query)
+        const res=await axios.post(`${process.env.REACT_APP_MONGO_DB}/api/watchlist/news`,query)
         setNews(res.data.items)
     }
 

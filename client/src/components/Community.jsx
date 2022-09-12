@@ -7,11 +7,11 @@ const Community=({investor})=>{
     const [insights,setInsights]=useState([])
 
     const getThreads=async ()=>{
-        const res=await axios.get('http://localhost:3001/api/thread/all')
+        const res=await axios.get(`${process.env.REACT_APP_MONGO_DB}/api/thread/all`)
         setThreads(res.data)
     }
     const getInsights=async()=>{
-        const res=await axios.get('http://localhost:3001/api/insight/all')
+        const res=await axios.get(`${process.env.REACT_APP_MONGO_DB}/api/insight/all`)
         setInsights(res.data)
     }
     useEffect(()=>{
@@ -25,12 +25,12 @@ const Community=({investor})=>{
     const createReply=async (e,thread)=>{
         e.preventDefault()
         setInsight({...insight,thread})
-        const res=await axios.post('http://localhost:3001/api/insight/create',insight)
+        const res=await axios.post(`${process.env.REACT_APP_MONGO_DB}/api/insight/create`,insight)
         console.log(res.data)
     }
     const handleSubmit=async (e)=>{
         e.preventDefault()
-        const res=await axios.post('http://localhost:3001/api/thread/create',form)
+        const res=await axios.post(`${process.env.REACT_APP_MONGO_DB}/api/thread/create`,form)
         getThreads()
         getInsights()
     }

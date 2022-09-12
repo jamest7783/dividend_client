@@ -10,7 +10,7 @@ const DiversificationRadial=({investor})=>{
 
     useEffect(()=>{
         const getPositions=async ()=>{
-            const res=await axios.get(`http://localhost:3002/api/portfolio/read/${investor.portfolios[0]}/positions`)
+            const res=await axios.get(`${process.env.REACT_APP_POSTGRESQL_DB}/api/portfolio/read/${investor.portfolios[0]}/positions`)
             setPositions(res.data)
             let temp={
                 labels:[],
