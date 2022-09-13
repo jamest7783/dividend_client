@@ -38,7 +38,7 @@ const Charts=({investor})=>{
                 date:data.labels[data.labels.length-1],
                 numShares:0,
                 pricePerShare:data.datasets[0].data[data.datasets[0].data.length-1],
-                portfolioId:investor.portfolios[0],
+                portfolioId:investor?investor.portfolios[0]:0,
                 ticker:tkr
             })
         }

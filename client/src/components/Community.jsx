@@ -18,15 +18,16 @@ const Community=({investor})=>{
         getThreads()
         getInsights()
     },[])
-    const [form,setForm]=useState({author:investor._id,name:'',symbol:'',tag:'',textBody:''})
-    const [insight,setInsight]=useState({author:investor._id,text:'',thread:0})
+        
+    const [form,setForm]=useState({name:'',symbol:'',tag:'',textBody:''})
+    const [insight,setInsight]=useState({text:'',thread:0})
+
     const handleInsight=(e)=>{setInsight({...insight,[e.target.name]:e.target.value})}
     const handleChange=(e)=>{setForm({...form,[e.target.name]:e.target.value})}
     const createReply=async (e,thread)=>{
         e.preventDefault()
-        setInsight({...insight,thread})
+        setInsight({...insight,author:investor._id,thread})
         const res=await axios.post(`${process.env.REACT_APP_MONGO_DB}/api/insight/create`,insight)
-        console.log(res.data)
     }
     const handleSubmit=async (e)=>{
         e.preventDefault()
