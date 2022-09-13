@@ -57,11 +57,12 @@ const Community=({investor})=>{
                     </div>
                     {threads.map((thread)=>(
                         <div id='thread'>
-                            <div>
+                            <div id='thread-form'>
                                 <div id='thread-name'>{thread.name}</div>
-                                <div>{thread.textBody}</div>
-                                <button>upVote</button>
-                                <button>downVote</button>
+                                <div> 
+                                    <button>upVote</button>
+                                    <button>downVote</button>
+                                </div>
                                 <div>
                                     <button onClick={(e)=>{createReply(e,thread._id)}}>
                                         reply
@@ -75,6 +76,7 @@ const Community=({investor})=>{
                                         value={insight.value}
                                     ></textarea>   
                                 </div>
+                                <div>{thread.textBody}</div>
                                 {insights?.map((insight)=>(
                                     insight.thread===thread._id &&
                                     <div>{insight.text}</div>
@@ -85,12 +87,12 @@ const Community=({investor})=>{
                 </div>
                 <div id='top-performers'>
                     <div id='create-thread'>
-                        <form>
+                        <form id='create-thread-form'>
                             <input
                                 onChange={handleChange}
                                 name='name'
                                 type='name'
-                                placeholder='name'
+                                placeholder='thread title'
                                 value={form.value}
                                 required
                             ></input>

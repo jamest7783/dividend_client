@@ -2,7 +2,7 @@ const Search=()=>{
 
     return(
         <div id='search'>
-            <div id='magnifying-glass'>O</div>
+            <div id='magnifying-glass'></div>
             <input id='search-input'></input>
         </div>
     )

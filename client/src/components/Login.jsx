@@ -16,38 +16,42 @@ const Login=({setFocus,setInvestor,toggleAuthenticated})=>{
 
     return(
         <div id='login'>
-            <div id='login-form-icon'>logo</div>
             <div id='switch-auth-wrapper'>
                 <div>Don't have an account?</div>
                 <button onClick={(e)=>{setFocus('register')}} id='sign-up'>
                     Sign Up.
                 </button>
             </div>
-            <div id='auth-form-wrapper'>
-                <div id='auth-input-wrapper'>email
-                    <input
-                        onChange={handleChange}
-                        name='email'
-                        type='email'
-                        placeholder='email'
-                        value={form.value}
-                        required
-                    />
-                </div>
-                <div id='auth-input-wrapper'>password
-                    <input
-                        onChange={handleChange}
-                        name='password'
-                        type='password'
-                        placeholder='password'
-                        value={form.value}
-                        required
-                    />
+            <div id='login-form-icon'></div>
+            <div id='auth-form-wrapper-login'>
+                <div className='login-input'>
+                    <div id='auth-input-wrapper'>Email
+                        <input
+                            onChange={handleChange}
+                            name='email'
+                            type='email'
+                            placeholder=''
+                            value={form.value}
+                            required
+                        />
+                    </div>
+                    <div clasName='login-input' id='auth-input-wrapper'>Password
+                        <input
+                            onChange={handleChange}
+                            name='password'
+                            type='password'
+                            placeholder=''
+                            value={form.value}
+                            required
+                        />
+                    </div>
                 </div>
                 <button 
+                    className='login-button'
+                    id='auth-button'
                     onClick={(e)=>{handleSubmit(e)}}
                     disabled={!form.email||!form.password}>
-                    log in
+                    Log In
                 </button>
             </div>
         </div>

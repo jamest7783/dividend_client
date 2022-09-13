@@ -28,50 +28,53 @@ const Register=({setFocus})=>{
                 </button>
             </div>
             <div id='auth-form-wrapper'>
-                <div id='auth-input-wrapper'>user name
-                    <input
-                        onChange={handleChange}
-                        name='user_name'
-                        type='user_name'
-                        placeholder='user_name'
-                        value={form.value}
-                        required
-                    />
-                </div>
-                <div id='auth-input-wrapper'>email
-                    <input
-                        onChange={handleChange}
-                        name='email'
-                        type='email'
-                        placeholder='email'
-                        value={form.value}
-                        required
-                    />
-                </div>
-                <div id='auth-input-wrapper'>password
-                    <input
-                        onChange={handleChange}
-                        name='password'
-                        type='password'
-                        placeholder='password'
-                        value={form.value}
-                        required
-                    />
-                </div>
-                <div id='auth-input-wrapper'>confirm password
-                    <input
-                        onChange={handleChange}
-                        name='confirm_password'
-                        type='confirm_password'
-                        placeholder='confirm_password'
-                        value={form.value}
-                        required
-                    />
+                <div id='register-form'>
+                    <div id='auth-input-wrapper'>User Name
+                        <input
+                            onChange={handleChange}
+                            name='user_name'
+                            type='user_name'
+                            placeholder=''
+                            value={form.value}
+                            required
+                        />
+                    </div>
+                    <div id='auth-input-wrapper'>Email
+                        <input
+                            onChange={handleChange}
+                            name='email'
+                            type='email'
+                            placeholder=''
+                            value={form.value}
+                            required
+                        />
+                    </div>
+                    <div id='auth-input-wrapper'>Password
+                        <input
+                            onChange={handleChange}
+                            name='password'
+                            type='password'
+                            placeholder=''
+                            value={form.value}
+                            required
+                        />
+                    </div>
+                    <div id='auth-input-wrapper'>Confirm Password
+                        <input
+                            onChange={handleChange}
+                            name='confirm_password'
+                            type='confirm_password'
+                            placeholder=''
+                            value={form.value}
+                            required
+                        />
+                    </div>
                 </div>
                 <button 
+                    id='auth-button'
                     onClick={(e)=>{handleSubmit(e)}}
                     disabled={!form.email||!form.password}>
-                    create account
+                    Create Free Account
                 </button>
             </div>
         </div>
