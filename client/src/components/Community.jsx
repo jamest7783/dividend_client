@@ -59,7 +59,7 @@ const Community=({investor})=>{
                         <div id='thread'>
                             <div id='thread-form'>
                                 <div id='thread-name'>{thread.name}</div>
-                                <div> 
+                                <div > 
                                     <button>upVote</button>
                                     <button>downVote</button>
                                 </div>
