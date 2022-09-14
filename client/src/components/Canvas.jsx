@@ -17,7 +17,7 @@ const Canvas=({focus,setFocus,setInvestor,toggleAuthenticated,investor})=>{
             {focus==='account'&&<Account/>}
             {focus==='charts'&&<Charts
                 setScrollChartData={setScrollChartData}
-                scrollChartData={scrollChartData}
+                scrollChartData={scrollChartData }
                 investor={investor}
             />}
             {focus==='community'&&<Community
