@@ -111,7 +111,7 @@ const Charts=({investor,scrollChartData,setScrollChartData})=>{
                         {(mainChartData.datasets[0].data[mainChartData.datasets[0].data.length-1]*order.numShares).toFixed(2)}
                         <button 
                         id='order-submit'
-                        onClick={(e)=>{handleSubmit(e)}}>
+                        onClick={(e)=>{handleSubmit(e)} }>
                         Submit Order
                     </button>
                     </div>   
