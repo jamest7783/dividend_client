@@ -2,7 +2,7 @@ const Account=()=>{
 
     return(
         <div id='glass'>
-            account
+            accoun t
         </div>
     )
 }
