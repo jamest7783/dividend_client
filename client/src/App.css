@@ -194,7 +194,8 @@ input{
     background:transparent;
     grid-area:1/4/3/5;
     overflow:scroll;
-    scrollbar-width:none;
+    border:1px solid rgba(0,0,0,0.2);
+    border-radius:6px;
     
 }
 .watchlist-item{
@@ -206,16 +207,58 @@ input{
     padding-right:10px;
     padding-left:10px;
     align-items:center;
+    outline:1px solid black;
+    outline-offset:-5px;
+    border-radius:10px;
 }
 #positions{
-    margin:10px;
-    background:white;
+    margin:20px;
+    border:1px solid black;
+    border-radius:6px;
     grid-area:3/1/5/4;
+}
+#position-title{
+    margin:10px;
+}
+#positions-container{
+    width:90%;
+    height:90%;
+    margin:10px;
+}
+#positions-columns{
+    display:flex;
+    justify-content:space-around;
 }
 #diversification-radial{
     margin:10px;
     background:white;
     grid-area:3/4/5/5;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+#add-to-watchlist{
+    border:1px solid black;
+    width:90%;
+    height:10%;
+    justify-self:center;
+}
+#watchlist-button{
+    background:none;
+    border:1px solid black;
+    border-radius:50%;
+}
+#watchlist-button:hover{
+    background:black;
+    color:white;
+    cursor: pointer;
+}
+#watchlist-button:active{
+    cursor:grabbing;
+}
+#watchlist-input{
+margin-left:10px;
+margin-right:10px;
 }
 #chart{
     margin-left:40px;
@@ -236,7 +279,6 @@ input{
     position:fixed;
     display:flex;
     justify-content:center;
-
 }
 #indicators{
     margin:10px;

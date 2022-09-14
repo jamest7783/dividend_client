@@ -19,16 +19,25 @@ const Positions=({investor})=>{
 
     return(
         <div id='positions'>
-            {Positions[0] && Object.keys(positions)?.map((pos)=>(
-                <div id='position'>
-                    <p>{pos.toUpperCase()}</p>
-                    <p>Shares: {positions[pos].numShares}</p> 
-                    <p>AvgPricePerShare: {positions[pos].avgPricePerShare.toFixed(2)}</p> 
-                    <p>Last Close: {positions[pos].currentPrice.toFixed(2)}</p> 
-                    <p>Capital Gains: {(positions[pos].numShares*(positions[pos].currentPrice-positions[pos].avgPricePerShare)).toFixed(2)}</p> 
-                    
-                </div>
-            ))}
+            <div id='position-container'>
+                <div id='position-title'>Positions</div>
+                    <div id='positions-columns'>
+                        <p>Symbol</p>
+                        <p>Position</p> 
+                        <p>Average Price</p> 
+                        <p>Current Price</p> 
+                        <p>Capital Gains</p>
+                    </div>
+                {Object.keys(positions)?.map((pos)=>(
+                    <div id='position'>
+                        <p>{pos.toUpperCase()}</p>
+                        <p>{positions[pos].numShares}</p> 
+                        <p>{positions[pos].avgPricePerShare.toFixed(2)}</p> 
+                        <p>{positions[pos].currentPrice.toFixed(2)}</p> 
+                        <p>{(positions[pos].numShares*(positions[pos].currentPrice-positions[pos].avgPricePerShare)).toFixed(2)}</p> 
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

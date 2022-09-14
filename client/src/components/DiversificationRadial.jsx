@@ -20,14 +20,14 @@ const DiversificationRadial=({investor})=>{
                 temp.labels.push(pos)
                 temp.datasets[0].data.push(positions[pos].numShares*positions[pos].avgPricePerShare)
             })
-            setPieData({...temp} )
+            setPieData({...temp  } )
         }
         getPositions()
-    },[])
+    },[positions])
 
     return(
         <div id='diversification-radial'>
-            <Pie data={pieData }/> 
+            <Pie data={pieData}/> 
         </div>
     )
 }
