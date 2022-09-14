@@ -7,6 +7,7 @@ const Positions=({investor})=>{
     const [positions,setPositions]=useState([])
 
     useEffect(()=>{
+        
         const getPositions=async ()=>{
             console.log(investor.portfolios[0])
             const res=await axios.get(`${process.env.REACT_APP_POSTGRESQL_DB}/api/portfolio/read/${investor.portfolios[0]}/positions`)
@@ -18,7 +19,7 @@ const Positions=({investor})=>{
 
     return(
         <div id='positions'>
-            {Object.keys(positions)?.map((pos)=>(
+            {Positions[0] && Object.keys(positions)?.map((pos)=>(
                 <div id='position'>
                     <p>{pos.toUpperCase()}</p>
                     <p>Shares: {positions[pos].numShares}</p> 

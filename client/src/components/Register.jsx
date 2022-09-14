@@ -9,6 +9,7 @@ const Register=({setFocus})=>{
     const handleSubmit=async (e)=>{
         e.preventDefault()
         const portfolio=await axios.post(`${process.env.REACT_APP_POSTGRESQL_DB}/api/portfolio/create`)
+        console.log(portfolio.data.id,form)
         await register({
             user_name:form.user_name,
             email:form.email,

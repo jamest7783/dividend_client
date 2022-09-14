@@ -10,31 +10,37 @@ const News=()=>{
         const res=await axios.post(`${process.env.REACT_APP_MONGO_DB}/api/watchlist/news`,query)
         setNews(res.data.items)
     }
+    useEffect(()=>{requestNews()},[])
+    const link=(path)=>{window.open(path,'_blank')}
 
 
     return(
         <div id='glass'>
-            <div id='news-search-container'>
-                <button id='news-search-button'
-                    onClick={(e)=>{requestNews()}}>
-                    search
-                </button>
-                <input id='news-search-input'          
-                    onChange={handleChange}
-                    name='search'
-                    type='search'
-                    placeholder='search'
-                ></input>
-            </div>
-            <div id='news'>
-                {news?.map((article)=>(
-                    <div id='tile'>
-                        <div>{article.title}</div>
-                        <button 
-                            // onClick={(e)=>{}}
-                        >{article.link}</button>
-                    </div>
-                ))}
+            <div id='news-container'>
+                <div id='news-search-container'>
+                    <input id='news-search-input'          
+                        onChange={handleChange}
+                        name='search'
+                        type='search'
+                        placeholder=''
+                    ></input>
+                    <button id='news-search-button'
+                        onClick={(e)=>{requestNews()}}>
+                        search
+                    </button>
+                </div>
+               
+                    {news?.map((article)=>(
+                        <div id='tile'>
+                            <div id='news-source'>{article.title.split('-')[1]}</div>
+                            <div id='article-title'>{article.title.split('-')[0]}</div>
+                            <button 
+                                id='news-link'
+                                onClick={(e)=>{link(article.link)}}
+                            >Go to Article</button>
+                        </div>
+                    ))}
+                 
             </div>
         </div>
     )

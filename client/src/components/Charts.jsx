@@ -3,7 +3,7 @@ import {useState,useEffect, useDebugValue} from 'react'
 import {Line} from 'react-chartjs-2'
 const Chart=require('chart.js/auto')
  
-const Charts=({investor})=>{
+const Charts=({investor,scrollChartData,setScrollChartData})=>{
 
     const [temp,setTemp]=useState('')
     const [mainSymbol,setMainSymbol]=useState('TSLA')
@@ -28,9 +28,7 @@ const Charts=({investor})=>{
     })
     const [optionsMini,setoptionsMini]=useState({
         scales: {x:{grid:{display:false},ticks:{maxRotation:0,minRotation:0}},y:{grid:{display:false}}},
-        // plugins:{legend:{display:false}}
     })
-    const [scrollChartData,setScrollChartData]=useState([])
     useEffect(()=>{
         let tkr=mainSymbol
         const getMainChartData=async ()=>{
@@ -41,7 +39,6 @@ const Charts=({investor})=>{
             res.data.reverse().map((period)=>{
                 count%4===0?data.labels.push(period.date.substring(5,10)):data.labels.push('')
                 count++
-            // data.labels.push(period.date.substring(5,10))
                 data.datasets[0].data.push(period.close) 
             })
             setMainChartData(data)
@@ -78,15 +75,16 @@ const Charts=({investor})=>{
     },[mainSymbol])
     return(
         <div id='glass'>
-            <div id='chart'>
-                <div id='chart-search-bar'>
-                    <input onChange={handleSymbol} id='main-chart-sym' placeholder='TSLA'/>  
-                    <button id='chart-button' onClick={(e)=>{handleSubmitSymbol(e)}}>view</button>
-                </div>
-                <Line id='main-chart'
-                data={mainChartData} options={options}/>
+            <div id='close'>
+                <div id='currency'>USD </div>&nbsp;&nbsp;&nbsp;{mainChartData.datasets[0].data[mainChartData.datasets[0].data.length-1].toFixed(2)}
             </div>
-            <div id='indicators'></div>
+            <div id='chart-search-bar'>
+                <input onChange={handleSymbol} id='main-chart-sym' placeholder='TSLA'/>  
+                <button id='chart-button' onClick={(e)=>{handleSubmitSymbol(e)}}>view</button>
+            </div>
+            <div id='chart'>
+                <Line id='main-chart' data={mainChartData} options={options}/>
+            </div>
             <div id='charts'>
                 {scrollChartData.map((unit)=>(
                     <div className='mini-chart'>
@@ -97,22 +95,24 @@ const Charts=({investor})=>{
             </div>
             <div id='trade-bar-container'>
                     <div id='cost-estimate'>
-                        {mainChartData.datasets[0].data[mainChartData.datasets[0].data.length-1].toFixed(2)} x 
+                        Buy
                         <input 
                         id='order-numShares'
                         onChange={handleChange}
                         name='numShares'
-                        type='numShares'
+                        type='number'
+                        min='0'
+                        max='10000'
                         placeholder='quantity'
                         value={order.numShares}
-                    />=  
+                    />
                     </div>
-                    <div>
+                    <div id='estimator'>
                         {(mainChartData.datasets[0].data[mainChartData.datasets[0].data.length-1]*order.numShares).toFixed(2)}
                         <button 
                         id='order-submit'
                         onClick={(e)=>{handleSubmit(e)}}>
-                        Submit
+                        Submit Order
                     </button>
                     </div>   
             </div>

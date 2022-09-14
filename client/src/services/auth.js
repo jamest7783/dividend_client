@@ -3,6 +3,7 @@ import Client from './api'
 export const register=async (form)=>{
     try{
         const res=await Client.post('/api/investor/register',form)
+        console.log(res)
         return res.data
     }catch(error){throw error}
 }
@@ -15,7 +16,7 @@ export const logIn=async (form)=>{
 }
 export const checkSession=async ()=>{
     try{
-        const res=await Client.get('api/investor/check-session')
+        const res=await Client.get('/api/investor/check-session')
     }catch(error){throw error}
 }
 

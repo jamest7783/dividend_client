@@ -10,13 +10,18 @@ import Register from '../components/Register'
  
 const Canvas=({focus,setFocus,setInvestor,toggleAuthenticated,investor})=>{
 
+    const [scrollChartData,setScrollChartData]=useState([])
+
     return(
         <div id='canvas'>
             {focus==='account'&&<Account/>}
             {focus==='charts'&&<Charts
+                setScrollChartData={setScrollChartData}
+                scrollChartData={scrollChartData}
                 investor={investor}
             />}
             {focus==='community'&&<Community
+                scrollChartData={scrollChartData}
                 investor={investor}
             />}
             {focus==='dashboard'&&<Dashboard

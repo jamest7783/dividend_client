@@ -9,7 +9,7 @@ import Canvas from './components/Canvas'
 const App=()=>{
 
   const [authenticated,toggleAuthenticated]=useState(false)
-  const [investor,setInvestor]=useState(null)
+  const [investor,setInvestor]=useState({})
   const [focus,setFocus]=useState(null)
   const [profile,setProfile]=useState({})
   const checkToken=async ()=>{
